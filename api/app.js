@@ -38,7 +38,8 @@ const corsOptions = {
       'http://localhost:5173', // Vite dev server
       'http://127.0.0.1:5173',
       'http://localhost:8001',
-      "http://localhost:8009"
+      "http://localhost:8009",
+      "https://08bbf551fbc4.ngrok-free.app"
     ];
     
     if (allowedOrigins.indexOf(origin) !== -1) {
