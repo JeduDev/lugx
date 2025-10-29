@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test CORS</title>
+</head>
+<body>
+    <h1>Test de Conectividad CORS</h1>
+    <button onclick="testHealth()">Probar /api/health</button>
+    <button onclick="testClientes()">Probar /api/clientes</button>
+    <div id="result"></div>
+
+    <script>
+        async function testHealth() {
+            const result = document.getElementById('result');
+            try {
+                console.log('Probando /api/health...');
+                const response = await fetch('http://localhost:3000/api/health', {
+                    method: 'GET',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    result.innerHTML = `<p style="color: green;">✅ Health OK: ${JSON.stringify(data)}</p>`;
+                } else {
+                    result.innerHTML = `<p style="color: red;">❌ Health Error: ${response.status}</p>`;
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                result.innerHTML = `<p style="color: red;">❌ Health Error: ${error.message}</p>`;
+            }
+        }
+
+        async function testClientes() {
+            const result = document.getElementById('result');
+            try {
+                console.log('Probando /api/clientes...');
+                const response = await fetch('http://localhost:3000/api/clientes', {
+                    method: 'GET',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    result.innerHTML = `<p style="color: green;">✅ Clientes OK: ${data.data.length} clientes encontrados</p>`;
+                } else {
+                    result.innerHTML = `<p style="color: red;">❌ Clientes Error: ${response.status}</p>`;
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                result.innerHTML = `<p style="color: red;">❌ Clientes Error: ${error.message}</p>`;
+            }
+        }
+    </script>
+</body>
+</html>

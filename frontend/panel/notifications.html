@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title>Notificaciones - Panel Admin LUGX</title>
+    
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="../assets/css/fontawesome.css">
+    <link rel="stylesheet" href="../assets/css/templatemo-lugx-gaming.css">
+    <link rel="stylesheet" href="css/admin-panel.css">
+</head>
+
+<body>
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="../index.html" class="logo">
+                            <img src="../assets/images/logo.svg" alt="" style="width: 158px;">
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li><a href="index.html">Dashboard</a></li>
+                            <li><a href="login.html">Login</a></li>
+                            <li><a href="auth.html">Usuarios</a></li>
+                            <li><a href="notifications.html" class="active">Notificaciones</a></li>
+                            <li><a href="clientes.html">Clientes</a></li>
+                            <li><a href="trajes.html">Trajes</a></li>
+                            <li><a href="rentas.html">Rentas</a></li>
+                            <li><a href="../index.html">Volver al Sitio</a></li>
+                        </ul>   
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <!-- ***** Notifications Content Start ***** -->
+    <div class="admin-panel-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="admin-header">
+                        <h2>Sistema de Notificaciones</h2>
+                        <p>Gestiona alertas, mensajes y comunicaciones del sistema</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notification Stats -->
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="admin-card">
+                        <div class="card-icon">
+                            <i class="fa fa-bell"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4 id="totalNotifications">0</h4>
+                            <p>Total Notificaciones</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="admin-card">
+                        <div class="card-icon">
+                            <i class="fa fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4 id="unreadNotifications">0</h4>
+                            <p>No Leídas</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="admin-card">
+                        <div class="card-icon">
+                            <i class="fa fa-exclamation-circle"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4 id="highPriorityNotifications">0</h4>
+                            <p>Alta Prioridad</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="admin-card">
+                        <div class="card-icon">
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4 id="todayNotifications">0</h4>
+                            <p>Hoy</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notification Management -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="crud-container">
+                        <div class="crud-header">
+                            <h3>Gestión de Notificaciones</h3>
+                            <button class="btn btn-add" onclick="showCreateNotificationModal()">
+                                <i class="fa fa-plus"></i> Nueva Notificación
+                            </button>
+                        </div>
+                        
+                        <!-- Filtros y Búsqueda -->
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <select class="form-control" id="filterType">
+                                    <option value="">Todos los tipos</option>
+                                    <option value="info">Información</option>
+                                    <option value="success">Éxito</option>
+                                    <option value="warning">Advertencia</option>
+                                    <option value="error">Error</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-control" id="filterStatus">
+                                    <option value="">Todos los estados</option>
+                                    <option value="read">Leídas</option>
+                                    <option value="unread">No leídas</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="searchNotification" placeholder="Buscar notificaciones...">
+                            </div>
+                        </div>
+                        
+                        <div class="table-responsive">
+                            <table class="crud-table" id="notificationsTable">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Título</th>
+                                        <th>Tipo</th>
+                                        <th>Estado</th>
+                                        <th>Fecha</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="notificationsTableBody">
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Nuevo pedido recibido</td>
+                                        <td><span class="badge bg-info">Info</span></td>
+                                        <td><span class="badge bg-success">Activa</span></td>
+                                        <td>2024-01-15 10:30</td>
+                                        <td>
+                                            <button class="btn-edit" onclick="editNotification(1)">Editar</button>
+                                            <button class="btn-delete" onclick="deleteNotification(1)">Eliminar</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Stock bajo en productos</td>
+                                        <td><span class="badge bg-warning">Alerta</span></td>
+                                        <td><span class="badge bg-success">Activa</span></td>
+                                        <td>2024-01-15 09:15</td>
+                                        <td>
+                                            <button class="btn-edit" onclick="editNotification(2)">Editar</button>
+                                            <button class="btn-delete" onclick="deleteNotification(2)">Eliminar</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Error en sistema de pagos</td>
+                                        <td><span class="badge bg-danger">Crítica</span></td>
+                                        <td><span class="badge bg-danger">Pendiente</span></td>
+                                        <td>2024-01-15 08:45</td>
+                                        <td>
+                                            <button class="btn-edit" onclick="editNotification(3)">Editar</button>
+                                            <button class="btn-delete" onclick="deleteNotification(3)">Eliminar</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <!-- Paginación -->
+                        <div class="pagination-container">
+                            <ul class="pagination" id="pagination">
+                                <!-- La paginación se genera dinámicamente -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Notifications Content End ***** -->
+
+    <!-- Add/Edit Notification Modal -->
+    <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="notificationModalLabel">Crear Nueva Notificación</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Alert Container -->
+                    <div id="alertContainer"></div>
+                    
+                    <form id="notificationForm">
+                        <input type="hidden" id="notificationId" name="id">
+                        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="notificationTitle">Título *</label>
+                                    <input type="text" class="form-control" id="notificationTitle" name="title" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="notificationType">Tipo</label>
+                                    <select class="form-control" id="notificationType" name="type">
+                                        <option value="info">Información</option>
+                                        <option value="success">Éxito</option>
+                                        <option value="warning">Advertencia</option>
+                                        <option value="error">Error</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="notificationMessage">Mensaje *</label>
+                                    <textarea class="form-control" id="notificationMessage" name="message" rows="4" required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="saveNotification()">Guardar Notificación</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/custom.js"></script>
+    <script src="js/storage-utils.js"></script>
+    <script src="js/connectivity-manager.js"></script>
+    <script src="js/notifications.js"></script>
+
+    <style>
+        .notification-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .notification-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+            transition: background-color 0.3s ease;
+        }
+        
+        .notification-item:hover {
+            background-color: #f8f9ff;
+        }
+        
+        .notification-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+        }
+        
+        .notification-content h6 {
+            margin: 0 0 5px 0;
+            font-weight: 600;
+            color: #2a2a2a;
+        }
+        
+        .notification-content p {
+            margin: 0;
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
+</body>
+</html>

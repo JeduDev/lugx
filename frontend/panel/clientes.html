@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title>Clientes - Panel Admin LUGX</title>
+    
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="../assets/css/fontawesome.css">
+    <link rel="stylesheet" href="../assets/css/templatemo-lugx-gaming.css">
+    <link rel="stylesheet" href="css/admin-panel.css">
+</head>
+
+<body>
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="../index.html" class="logo">
+                            <img src="../assets/images/logo.svg" alt="" style="width: 158px;">
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li><a href="index.html">Dashboard</a></li>
+                            <li><a href="login.html">Login</a></li>
+                            <li><a href="auth.html">Usuarios</a></li>
+                            <li><a href="notifications.html">Notificaciones</a></li>
+                            <li><a href="clientes.html" class="active">Clientes</a></li>
+                            <li><a href="trajes.html">Trajes</a></li>
+                            <li><a href="rentas.html">Rentas</a></li>
+                            <li><a href="../index.html">Volver al Sitio</a></li>
+                        </ul>   
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <!-- ***** Clientes Content Start ***** -->
+    <div class="admin-panel-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="admin-header">
+                        <h2>Gestión de Clientes</h2>
+                        <p>Administra la información de los clientes del sistema de rentas</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cliente Stats -->
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="admin-card">
+                        <div class="card-icon">
+                            <i class="fa fa-users"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4>85</h4>
+                            <p>Total Clientes</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="admin-card">
+                        <div class="card-icon">
+                            <i class="fa fa-user-check"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4>78</h4>
+                            <p>Clientes Activos</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="admin-card">
+                        <div class="card-icon">
+                            <i class="fa fa-user-plus"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4>8</h4>
+                            <p>Nuevos Este Mes</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="admin-card">
+                        <div class="card-icon">
+                            <i class="fa fa-calendar-alt"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4>15</h4>
+                            <p>Con Rentas Activas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Clientes Management -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="crud-container">
+                        <div class="crud-header">
+                            <h3>Lista de Clientes</h3>
+                            <button class="btn btn-add" onclick="openAddClienteModal()">
+                                <i class="fa fa-plus"></i> Agregar Cliente
+                            </button>
+                        </div>
+
+                        <!-- Filters -->
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" id="searchCliente" placeholder="Buscar por nombre o correo...">
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-control" id="filterStatus">
+                                    <option value="">Todos los estados</option>
+                                    <option value="activo">Activos</option>
+                                    <option value="inactivo">Inactivos</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn-secondary" onclick="exportClientes()">
+                                    <i class="fa fa-download"></i> Exportar CSV
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Clientes Table -->
+                        <div class="table-responsive">
+                            <table class="crud-table" id="clientesTable">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nombre</th>
+                                        <th>Teléfono</th>
+                                        <th>Correo Electrónico</th>
+                                        <th>Rentas Activas</th>
+                                        <th>Fecha Registro</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="clientesTableBody">
+                                    <!-- Sample data -->
+                               
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Clientes Content End ***** -->
+
+    <!-- Add/Edit Cliente Modal -->
+    <div class="modal fade" id="clienteModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="clienteModalTitle">Agregar Cliente</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="clienteForm">
+                        <input type="hidden" id="clienteId">
+                        
+                        <div class="form-group">
+                            <label for="nombreCliente">Nombre Completo *</label>
+                            <input type="text" class="form-control" id="nombreCliente" required maxlength="100">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="telefono">Teléfono *</label>
+                            <input type="tel" class="form-control" id="telefono" required pattern="[0-9]{10}" maxlength="10">
+                            <small class="form-text text-muted">Ingrese 10 dígitos sin espacios ni guiones</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="correoElectronico">Correo Electrónico *</label>
+                            <input type="email" class="form-control" id="correoElectronico" required maxlength="50">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="saveCliente()">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/custom.js"></script>
+    <script src="js/storage-utils.js"></script>
+    <script src="js/connectivity-manager.js"></script>
+    <script src="js/clientes.js"></script>
+</body>
+</html>

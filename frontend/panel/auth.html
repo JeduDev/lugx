@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title>Gestión de Usuarios - Panel Admin LUGX</title>
+    
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="../assets/css/fontawesome.css">
+    <link rel="stylesheet" href="../assets/css/templatemo-lugx-gaming.css">
+    <link rel="stylesheet" href="css/admin-panel.css">
+</head>
+
+<body>
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="../index.html" class="logo">
+                            <img src="../assets/images/logo.svg" alt="" style="width: 158px;">
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li><a href="index.html">Dashboard</a></li>
+                            <li><a href="login.html">Login</a></li>
+                            <li><a href="auth.html" class="active">Usuarios</a></li>
+                            <li><a href="notifications.html">Notificaciones</a></li>
+                            <li><a href="clientes.html">Clientes</a></li>
+                            <li><a href="trajes.html">Trajes</a></li>
+                            <li><a href="rentas.html">Rentas</a></li>
+                            <li><a href="../index.html">Volver al Sitio</a></li>
+                        </ul>   
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <!-- ***** Users Management Content Start ***** -->
+    <div class="admin-panel-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="admin-header">
+                        <h2>Gestión de Usuarios del Sistema</h2>
+                        <p>Administración de usuarios, roles y permisos</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Statistics -->
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="stats-card">
+                        <div class="stats-icon">
+                            <i class="fa fa-users"></i>
+                        </div>
+                        <div class="stats-content">
+                            <h3 id="totalUsers">15</h3>
+                            <p>Total Usuarios</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stats-card">
+                        <div class="stats-icon">
+                            <i class="fa fa-user-check"></i>
+                        </div>
+                        <div class="stats-content">
+                            <h3 id="activeUsers">12</h3>
+                            <p>Usuarios Activos</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stats-card">
+                        <div class="stats-icon">
+                            <i class="fa fa-user-shield"></i>
+                        </div>
+                        <div class="stats-content">
+                            <h3 id="adminUsers">3</h3>
+                            <p>Administradores</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stats-card">
+                        <div class="stats-icon">
+                            <i class="fa fa-clock"></i>
+                        </div>
+                        <div class="stats-content">
+                            <h3 id="onlineUsers">5</h3>
+                            <p>En Línea</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Users Management Section -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-container">
+                        <div class="crud-header">
+                            <h4>Lista de Usuarios del Sistema</h4>
+                            <div class="crud-actions">
+                                <button class="btn btn-add" onclick="abrirModalUsuario()">
+                                    <i class="fa fa-plus"></i> Nuevo Usuario
+                                </button>
+                                <button class="btn btn-secondary" onclick="exportUsers()">
+                                    <i class="fa fa-download"></i> Exportar
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Filters -->
+                        <div class="filters-section">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <select class="form-control" id="roleFilter">
+                                        <option value="">Todos los roles</option>
+                                        <option value="admin">Administrador</option>
+                                        <option value="manager">Gerente</option>
+                                        <option value="employee">Empleado</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <select class="form-control" id="statusFilter">
+                                        <option value="">Todos los estados</option>
+                                        <option value="activo">Activo</option>
+                                        <option value="inactivo">Inactivo</option>
+                                        <option value="suspendido">Suspendido</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="search-box">
+                                        <input type="text" class="form-control" id="searchUsers" placeholder="Buscar por nombre o email...">
+                                        <i class="fa fa-search"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="table-responsive">
+                            <table class="crud-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Avatar</th>
+                                        <th>Nombre Completo</th>
+                                        <th>Email</th>
+                                        <th>Rol</th>
+                                        <th>Estado</th>
+                                        <th>Último Acceso</th>
+                                        <th>Fecha Registro</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="usersTableBody">
+                                    <tr>
+                                        <td>1</td>
+                                        <td><div class="user-avatar">JP</div></td>
+                                        <td>Juan Pérez</td>
+                                        <td>juan@lugx.com</td>
+                                        <td><span class="badge bg-danger">Administrador</span></td>
+                                        <td><span class="badge bg-success">Activo</span></td>
+                                        <td>2024-01-25 14:30</td>
+                                        <td>2024-01-15</td>
+                                        <td>
+                                            <button class="btn-view" onclick="viewUser(1)" title="Ver detalles">
+                                                <i class="fa fa-eye"></i>
+                                            </button>
+                                            <button class="btn-edit" onclick="editUser(1)" title="Editar">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                            <button class="btn-delete" onclick="deleteUser(1)" title="Eliminar">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td><div class="user-avatar">MG</div></td>
+                                        <td>María García</td>
+                                        <td>maria@lugx.com</td>
+                                        <td><span class="badge bg-warning">Gerente</span></td>
+                                        <td><span class="badge bg-success">Activo</span></td>
+                                        <td>2024-01-25 09:15</td>
+                                        <td>2024-01-20</td>
+                                        <td>
+                                            <button class="btn-view" onclick="viewUser(2)" title="Ver detalles">
+                                                <i class="fa fa-eye"></i>
+                                            </button>
+                                            <button class="btn-edit" onclick="editUser(2)" title="Editar">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                            <button class="btn-delete" onclick="deleteUser(2)" title="Eliminar">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td><div class="user-avatar">CL</div></td>
+                                        <td>Carlos López</td>
+                                        <td>carlos@lugx.com</td>
+                                        <td><span class="badge bg-info">Empleado</span></td>
+                                        <td><span class="badge bg-secondary">Inactivo</span></td>
+                                        <td>2024-01-20 16:45</td>
+                                        <td>2024-02-01</td>
+                                        <td>
+                                            <button class="btn-view" onclick="viewUser(3)" title="Ver detalles">
+                                                <i class="fa fa-eye"></i>
+                                            </button>
+                                            <button class="btn-edit" onclick="editUser(3)" title="Editar">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                            <button class="btn-delete" onclick="deleteUser(3)" title="Eliminar">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td><div class="user-avatar">AR</div></td>
+                                        <td>Ana Rodríguez</td>
+                                        <td>ana@lugx.com</td>
+                                        <td><span class="badge bg-info">Empleado</span></td>
+                                        <td><span class="badge bg-success">Activo</span></td>
+                                        <td>2024-01-25 11:20</td>
+                                        <td>2024-01-18</td>
+                                        <td>
+                                            <button class="btn-view" onclick="viewUser(4)" title="Ver detalles">
+                                                <i class="fa fa-eye"></i>
+                                            </button>
+                                            <button class="btn-edit" onclick="editUser(4)" title="Editar">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                            <button class="btn-delete" onclick="deleteUser(4)" title="Eliminar">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Pagination -->
+                        <div class="pagination-container">
+                            <div class="pagination-info">
+                                Mostrando 1-4 de 15 usuarios
+                            </div>
+                            <nav aria-label="Paginación de usuarios">
+                                <ul class="pagination">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" tabindex="-1">Anterior</a>
+                                    </li>
+                                    <li class="page-item active">
+                                        <a class="page-link" href="#">1</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">2</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">3</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">Siguiente</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add/Edit User Modal -->
+            <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="userModalLabel">Agregar Nuevo Usuario</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="userForm">
+                                <input type="hidden" id="userId">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="firstName">Nombre *</label>
+                                            <input type="text" class="form-control" id="firstName" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="lastName">Apellido *</label>
+                                            <input type="text" class="form-control" id="lastName" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="userEmail">Email *</label>
+                                            <input type="email" class="form-control" id="userEmail" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="userPhone">Teléfono</label>
+                                            <input type="tel" class="form-control" id="userPhone">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="userPassword">Contraseña *</label>
+                                            <input type="password" class="form-control" id="userPassword" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="confirmPassword">Confirmar Contraseña *</label>
+                                            <input type="password" class="form-control" id="confirmPassword" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="userRole">Rol *</label>
+                                            <select class="form-control" id="userRole" required>
+                                                <option value="">Seleccionar rol</option>
+                                                <option value="admin">Administrador</option>
+                                                <option value="manager">Gerente</option>
+                                                <option value="employee">Empleado</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="userStatus">Estado *</label>
+                                            <select class="form-control" id="userStatus" required>
+                                                <option value="activo">Activo</option>
+                                                <option value="inactivo">Inactivo</option>
+                                                <option value="suspendido">Suspendido</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="userNotes">Notas</label>
+                                    <textarea class="form-control" id="userNotes" rows="3" placeholder="Notas adicionales sobre el usuario..."></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-primary" onclick="saveUser()">Guardar Usuario</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- View User Modal -->
+            <div class="modal fade" id="viewUserModal" tabindex="-1" aria-labelledby="viewUserModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="viewUserModalLabel">Detalles del Usuario</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="userDetails">
+                                <!-- User details will be loaded here -->
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Users Management Content End ***** -->
+
+    <!-- Scripts -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/custom.js"></script>
+    <script src="js/storage-utils.js"></script>
+    <script src="js/auth.js?v=2.0"></script>
+</body>
+</html>

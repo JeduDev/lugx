@@ -1,0 +1,269 @@
+/* Admin Panel Specific Styles - AdminLTE Inspired */
+body {
+    background-color: #f4f6f9;
+    color: #495057;
+}
+
+.admin-panel-content {
+    padding: 80px 0 30px 0;
+    background-color: #f4f6f9;
+    min-height: 100vh;
+}
+
+.admin-header {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #343a40;
+}
+
+.admin-header h2 {
+    font-size: 38px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.admin-header p {
+    font-size: 16px;
+    color: #6c757d;
+}
+
+/* Admin Cards */
+.admin-card {
+    background: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.05);
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    height: 100%;
+}
+
+.admin-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.admin-card .card-icon i {
+    font-size: 42px;
+    color: #007bff;
+}
+
+.admin-card h4 {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: #343a40;
+}
+
+.admin-card p {
+    color: #6c757d;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.admin-card .btn {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 0.25rem;
+    font-weight: 600;
+}
+
+.admin-card .btn:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* Stats Section */
+.stats-section {
+    background: #ffffff;
+    border-radius: 0.25rem;
+    padding: 30px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.05);
+    border: 1px solid #dee2e6;
+}
+
+.stats-section h3 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #343a40;
+    font-weight: 600;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 15px;
+    border-radius: 0.25rem;
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    margin-bottom: 15px;
+}
+
+.stat-item h4 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #007bff;
+    margin-bottom: 5px;
+}
+
+.stat-item p {
+    color: #6c757d;
+    font-weight: 500;
+    margin: 0;
+}
+
+/* Navigation adjustments */
+.admin-panel-btn {
+    background-color: #007bff !important;
+    color: white !important;
+    border-radius: 0.25rem !important;
+    padding: 8px 18px !important;
+    font-weight: 600 !important;
+}
+
+.admin-panel-btn:hover {
+    background-color: #0056b3 !important;
+}
+
+/* CRUD Table Styles */
+.crud-container {
+    background: #ffffff;
+    border-radius: 0.25rem;
+    padding: 25px;
+    margin-top: 25px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.05);
+    border: 1px solid #dee2e6;
+}
+
+.crud-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.crud-header h3 {
+    color: #343a40;
+    font-weight: 600;
+    margin: 0;
+}
+
+.btn-add {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 0.25rem;
+    font-weight: 600;
+}
+
+.btn-add:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+.crud-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.crud-table th,
+.crud-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.crud-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #495057;
+}
+
+.crud-table tbody tr:hover {
+    background-color: #f1f3f5;
+}
+
+.btn-edit {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #212529;
+    padding: 5px 12px;
+    border-radius: 0.2rem;
+    font-size: 13px;
+    margin-right: 5px;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 0.2rem;
+    font-size: 13px;
+}
+
+a{
+    color: #0f3257 !important;
+}
+
+/* Form Styles */
+.form-container {
+    background: #ffffff;
+    border-radius: 0.25rem;
+    padding: 25px;
+    margin-top: 25px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.05);
+    border: 1px solid #dee2e6;
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.form-control {
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    padding: 0.75rem 1rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.form-control:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .admin-header h2 {
+        font-size: 30px;
+    }
+    
+    .crud-header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .crud-table {
+        font-size: 13px;
+    }
+    
+    .crud-table th,
+    .crud-table td {
+        padding: 8px 6px;
+    }
+}

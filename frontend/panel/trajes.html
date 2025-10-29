@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title>Trajes - Panel Admin LUGX</title>
+    
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="../assets/css/fontawesome.css">
+    <link rel="stylesheet" href="../assets/css/templatemo-lugx-gaming.css">
+    <link rel="stylesheet" href="css/admin-panel.css">
+</head>
+
+<body>
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="../index.html" class="logo">
+                            <img src="../assets/images/logo.svg" alt="" style="width: 158px;">
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li><a href="index.html">Dashboard</a></li>
+                            <li><a href="login.html">Login</a></li>
+                            <li><a href="auth.html">Usuarios</a></li>
+                            <li><a href="notifications.html">Notificaciones</a></li>
+                            <li><a href="clientes.html">Clientes</a></li>
+                            <li><a href="trajes.html" class="active">Trajes</a></li>
+                            <li><a href="rentas.html">Rentas</a></li>
+                            <li><a href="../index.html">Volver al Sitio</a></li>
+                        </ul>   
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <!-- ***** Trajes Content Start ***** -->
+    <div class="admin-panel-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="admin-header">
+                        <h2>Gestión de Trajes</h2>
+                        <p>Administra el catálogo completo de trajes y vestimenta elegante para renta</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Traje Stats -->
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="admin-card">
+                        <div class="card-icon">
+                            <i class="fa fa-tshirt"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4>25</h4>
+                            <p>Total Trajes</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="admin-card">
+                        <div class="card-icon">
+                            <i class="fa fa-check-circle"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4>22</h4>
+                            <p>Disponibles</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="admin-card">
+                        <div class="card-icon">
+                            <i class="fa fa-calendar-alt"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4>3</h4>
+                            <p>En Renta</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="admin-card">
+                        <div class="card-icon">
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4>8</h4>
+                            <p>Más Populares</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trajes Management -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="crud-container">
+                        <div class="crud-header">
+                            <h3>Catálogo de Trajes</h3>
+                            <div>
+                                <button class="btn btn-add me-2" onclick="openAddTrajeModal()">
+                                    <i class="fa fa-plus"></i> Nuevo Traje
+                                </button>
+                                <button class="btn btn-secondary" onclick="exportTrajes()">
+                                    <i class="fa fa-download"></i> Exportar CSV
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Filters -->
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <select class="form-control" id="statusFilter">
+                                    <option value="">Todos los estados</option>
+                                    <option value="disponible">Disponible</option>
+                                    <option value="rentado">En Renta</option>
+                                    <option value="mantenimiento">En Mantenimiento</option>
+                                </select>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="searchTraje" placeholder="Buscar trajes por nombre o descripción...">
+                                    <button class="btn btn-outline-secondary" type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="table-responsive">
+                            <table class="crud-table" id="trajesTable">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nombre</th>
+                                        <th>Descripción</th>
+                                        <th>Estado</th>
+                                        <th>Rentas Totales</th>
+                                        <th>Fecha Creación</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="trajesTableBody">
+                                    <!-- Los datos se cargarán dinámicamente desde localStorage -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Trajes Content End ***** -->
+
+    <!-- Add/Edit Traje Modal -->
+    <div class="modal fade" id="trajeModal" tabindex="-1" role="dialog" aria-labelledby="trajeModalTitle">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="trajeModalTitle">Agregar Traje</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="trajeForm">
+                        <input type="hidden" id="trajeId">
+                        
+                        <div class="form-group">
+                            <label for="nombreTraje">Nombre del Traje *</label>
+                            <input type="text" class="form-control" id="nombreTraje" required maxlength="50">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="descripcion">Descripción</label>
+                            <textarea class="form-control" id="descripcion" rows="4" maxlength="500" placeholder="Descripción detallada del traje..."></textarea>
+                            <small class="form-text text-muted">Máximo 500 caracteres</small>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="saveTraje()">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Traje Details Modal -->
+    <div class="modal fade" id="viewTrajeModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Detalles del Traje</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="viewTrajeContent">
+                    <!-- Content will be populated by JavaScript -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/storage-utils.js"></script>
+    <script src="js/connectivity-manager.js"></script>
+    <script src="js/trajes.js"></script>
+</body>
+</html>
