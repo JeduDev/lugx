@@ -40,7 +40,7 @@ const corsOptions = {
       'http://localhost:8001',
       "http://localhost:8009",
       "https://08bbf551fbc4.ngrok-free.app",
-      "https://878a69659087.ngrok-free.app"
+      "https://878a69659087.ngrok-free.app",
       "http://localhost:8001"
     ];
     
